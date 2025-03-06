@@ -33,6 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ⬆️ Commit and push changes
+        continue-on-error: true
         run: |
           rm plugin-data-extractor
           git config --global user.name 'github-actions[bot]'
