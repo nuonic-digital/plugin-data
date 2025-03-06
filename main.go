@@ -27,8 +27,14 @@ type PackageDetailsResponse struct {
 }
 
 type ShopwareExtension struct {
-	Store map[string]interface{} `yaml:"store"` // Use interface{} to maintain flexibility
-	Build map[string]interface{} `yaml:"build"`
+	Store map[string]interface{} `yaml:"store" json:"store"` // Use interface{} to maintain flexibility
+	Build map[string]interface{} `yaml:"build" json:"build"`
+}
+
+type ShopwareExtensionMetadata struct {
+	RepositoryUrl string             `json:"repositoryUrl"`
+	Extension     *ShopwareExtension `json:"shopware-extension"`
+	Ref           string             `json:"ref"`
 }
 
 func main() {
@@ -46,7 +52,7 @@ func main() {
 		log.Fatalf("Failed to decode package list: %v", err)
 	}
 
-	packageData := make(map[string]*ShopwareExtension)
+	packageData := make(map[string]*ShopwareExtensionMetadata)
 	// Iterate through each package to get the repository URL
 	for _, packageName := range packageList.PackageNames {
 		detailsURL := fmt.Sprintf("https://packagist.org/packages/%s.json", packageName)
@@ -68,7 +74,11 @@ func main() {
 			if strings.Contains(version.Source.URL, "github.com") {
 				extension := checkShopwareExtensionFile(version.Source.URL)
 				if extension != nil {
-					packageData[packageName] = extension
+					packageData[packageName] = &ShopwareExtensionMetadata{
+						RepositoryUrl: version.Source.URL,
+						Extension:     extension,
+						Ref:           detailsURL,
+					}
 				}
 			}
 			break // Assuming you want one repository URL per package
