@@ -35,6 +35,14 @@
     },
     "ref": "https://packagist.org/packages/billie/shopware6-payment-module.json"
   },
+  "blurcreative/elysium-slider": {
+    "repositoryUrl": "https://github.com/fyrst-digital/elysium.git",
+    "shopware-extension": {
+      "store": null,
+      "build": null
+    },
+    "ref": "https://packagist.org/packages/blurcreative/elysium-slider.json"
+  },
   "findologic/plugin-shopware-6": {
     "repositoryUrl": "https://github.com/findologic/plugin-shopware-6.git",
     "shopware-extension": {
@@ -1475,7 +1483,7 @@
     "ref": "https://packagist.org/packages/netresearch/postdirekt-autocomplete.json"
   },
   "netseu/checkout": {
-    "repositoryUrl": "https://github.com/Nets-eCom/shopware6-easy-checkout.git",
+    "repositoryUrl": "https://github.com/DIBS-Payment-Services/shopware6-easy-checkout.git",
     "shopware-extension": {
       "store": null,
       "build": {
@@ -1536,6 +1544,30 @@
       }
     },
     "ref": "https://packagist.org/packages/nosto/nosto-integration.json"
+  },
+  "nuonic/plugin-installer": {
+    "repositoryUrl": "https://github.com/nuonic-digital/plugin-installer.git",
+    "shopware-extension": {
+      "store": null,
+      "build": {
+        "zip": {
+          "assets": {
+            "enable_es_build_for_admin": false,
+            "enable_es_build_for_storefront": false,
+            "enabled": true,
+            "es_build_disable_sass": false,
+            "npm_strict": false
+          },
+          "composer": {
+            "enabled": true
+          },
+          "pack": {
+            "excludes": {}
+          }
+        }
+      }
+    },
+    "ref": "https://packagist.org/packages/nuonic/plugin-installer.json"
   },
   "payone-gmbh/shopware-6": {
     "repositoryUrl": "https://github.com/PAYONE-GmbH/shopware-6.git",
