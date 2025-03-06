@@ -15,7 +15,7 @@ jobs:
         with:
           fetch-depth: 0
             
-      - name: Download latest release
+      - name: ⬇️ Download latest release
         run: |
           curl -s https://api.github.com/repos/nuonic-digital/plugin-data/releases/latest \
             | grep "browser_download_url" \
@@ -26,13 +26,13 @@ jobs:
           tar -xzf plugin-data_Linux_x86_64.tar.gz && rm plugin-data_Linux_x86_64.tar.gz
           chmod +x plugin-data-extractor
 
-      - name: Run Shopware Plugin Index Generator
+      - name: ⚡️ Run Shopware Plugin Index Generator
         run: |
           ./plugin-data-extractor
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit and push changes
+      - name: ⬆️ Commit and push changes
         run: |
           rm plugin-data-extractor
           git config --global user.name 'github-actions[bot]'
