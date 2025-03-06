@@ -11,13 +11,19 @@ jobs:
 
     steps:
     - name: Download latest release
-      uses: actions/download-artifact@v4
-      with:
-        name: plugin-data-extractor
+      run: |
+        curl -s https://api.github.com/repos/nuonic-digital/plugin-data/releases/latest \
+          | grep "browser_download_url" \
+          | cut -d : -f 2,3 \
+          | tr -d \" \
+          | grep Linux_x86_64 \
+          | wget -qi -
+        tar -xzf plugin-data_Linux_x86_64.tar.gz && rm plugin-data_Linux_x86_64.tar.gz
+        chmod +x plugin-data-extractor
 
     - name: Run Shopware Plugin Index Generator
       run: |
-        ./plugin-data-extractor_linux_amd64_v1/plugin-data-extractor
+        ./plugin-data-extractor
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
