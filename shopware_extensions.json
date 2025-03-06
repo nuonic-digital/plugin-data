@@ -1483,7 +1483,7 @@
     "ref": "https://packagist.org/packages/netresearch/postdirekt-autocomplete.json"
   },
   "netseu/checkout": {
-    "repositoryUrl": "https://github.com/Nets-eCom/shopware6-easy-checkout.git",
+    "repositoryUrl": "https://github.com/DIBS-Payment-Services/shopware6-easy-checkout.git",
     "shopware-extension": {
       "store": null,
       "build": {
