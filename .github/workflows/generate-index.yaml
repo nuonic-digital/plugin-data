@@ -10,29 +10,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Download latest release
-      run: |
-        curl -s https://api.github.com/repos/nuonic-digital/plugin-data/releases/latest \
-          | grep "browser_download_url" \
-          | cut -d : -f 2,3 \
-          | tr -d \" \
-          | grep Linux_x86_64 \
-          | wget -qi -
-        tar -xzf plugin-data_Linux_x86_64.tar.gz && rm plugin-data_Linux_x86_64.tar.gz
-        chmod +x plugin-data-extractor
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+            
+      - name: Download latest release
+        run: |
+          curl -s https://api.github.com/repos/nuonic-digital/plugin-data/releases/latest \
+            | grep "browser_download_url" \
+            | cut -d : -f 2,3 \
+            | tr -d \" \
+            | grep Linux_x86_64 \
+            | wget -qi -
+          tar -xzf plugin-data_Linux_x86_64.tar.gz && rm plugin-data_Linux_x86_64.tar.gz
+          chmod +x plugin-data-extractor
 
-    - name: Run Shopware Plugin Index Generator
-      run: |
-        ./plugin-data-extractor
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run Shopware Plugin Index Generator
+        run: |
+          ./plugin-data-extractor
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Commit and push changes
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add shopware_extensions.json
-        git commit -m 'Update Shopware plugin index'
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit and push changes
+        run: |
+          rm plugin-data-extractor
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add shopware_extensions.json
+          git commit -m 'Update Shopware plugin index'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
