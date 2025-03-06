@@ -1,0 +1,32 @@
+name: Generate Shopware Plugin Index
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Weekly schedule
+  workflow_dispatch:
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download latest release
+      uses: actions/download-artifact@v2
+      with:
+        name: plugin-data-extractor
+
+    - name: Run Shopware Plugin Index Generator
+      run: |
+        ./plugin-data-extractor --generate-index
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add shopware_extensions.json
+        git commit -m 'Update Shopware plugin index'
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

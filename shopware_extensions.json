@@ -1,0 +1,1926 @@
+{
+  "billie/shopware6-payment-module": {
+    "Store": null,
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": false,
+          "enabled": true
+        },
+        "composer": {
+          "enabled": true
+        },
+        "pack": {
+          "excludes": {
+            "paths": [
+              "__COMPOSER_HOME__",
+              "bin",
+              "tests",
+              "var",
+              ".gitignore",
+              ".shopware-extension.yml",
+              "ecs.php",
+              "phpstan.neon",
+              "phpunit.xml",
+              "rector.php",
+              "composer.lock"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "findologic/plugin-shopware-6": {
+    "Store": null,
+    "Build": {
+      "shopwareVersionConstraint": "~6.6.0",
+      "zip": {
+        "pack": {
+          "excludes": {
+            "paths": [
+              ".gitignore",
+              "bin",
+              "docs",
+              "release",
+              "phpcs.xml",
+              "phpunit.xml.dist",
+              "vendor/findologic/shopware6-common/.git",
+              ".eslintignore",
+              ".eslintrc.js",
+              ".eslintrc-administration.js",
+              ".eslintrc-storefront.js",
+              "Makefile",
+              "*.zip",
+              "*.phar"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "frosh/adminer-platform": {
+    "Store": {
+      "automatic_bugfix_version_compatibility": true,
+      "availabilities": [
+        "German",
+        "International"
+      ],
+      "categories": [
+        "System"
+      ],
+      "default_locale": "en_GB",
+      "description": {
+        "de": "\u003cp\u003eAdminer erlaubt es dir einfach in der Administration auf die Datenbank zuzugreifen.\u003c/p\u003e\n\u003cp\u003eDas Plugin wird von der Github Organization \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://github.com/FriendsOfShopware/\"\u003eFriendsOfShopware\u003c/a\u003e entwickelt.\nMaintainer des Plugin ist \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://github.com/shyim\"\u003eSoner Sayakci\u003c/a\u003e.\nDas Github Repository ist zu finden \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://github.com/FriendsOfShopware/FroshPlatformAdminer\"\u003ehier\u003c/a\u003e\n[Bei Fragen / Fehlern bitte ein Github Issue erstellen](https://github.com/FriendsOfShopware/FroshPlatformAdminer/issues/new\u003c/p\u003e\n",
+        "en": "\u003cp\u003eAdminer allows you to easily access the database in the administration.\u003c/p\u003e\n\u003cp\u003eThe plugin is provided by the Github Organization \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://github.com/FriendsOfShopware/\"\u003eFriendsOfShopware\u003c/a\u003e.\nMaintainer of the plugin is \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://github.com/shyim\"\u003eSoner Sayakci\u003c/a\u003e.\nYou can find the Github Repository \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://github.com/FriendsOfShopware/FroshPlatformAdminer\"\u003ehere\u003c/a\u003e\n\u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://github.com/FriendsOfShopware/FroshPlatformAdminer/issues/new\"\u003eFor questions / errors please create a Github Issue\u003c/a\u003e\u003c/p\u003e\n"
+      },
+      "faq": {
+        "de": [],
+        "en": []
+      },
+      "features": {
+        "de": [
+          ""
+        ],
+        "en": [
+          ""
+        ]
+      },
+      "highlights": {
+        "de": [
+          ""
+        ],
+        "en": [
+          ""
+        ]
+      },
+      "icon": "src/Resources/store/icon.png",
+      "images": [
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-0.png",
+          "preview": {
+            "de": true,
+            "en": true
+          },
+          "priority": 0
+        }
+      ],
+      "installation_manual": {
+        "de": "",
+        "en": ""
+      },
+      "localizations": [
+        "de_DE",
+        "en_GB"
+      ],
+      "tags": {
+        "de": [
+          "Datenbank",
+          "adminer"
+        ],
+        "en": [
+          "database",
+          "adminer"
+        ]
+      },
+      "type": "extension",
+      "videos": {
+        "de": [],
+        "en": []
+      }
+    },
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": true
+        }
+      }
+    }
+  },
+  "frosh/development-helper": {
+    "Store": null,
+    "Build": null
+  },
+  "frosh/frosh-platform-template-mail": {
+    "Store": null,
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": true,
+          "enabled": true
+        },
+        "composer": {
+          "enabled": false
+        },
+        "pack": {
+          "excludes": {
+            "paths": [
+              ".idea",
+              "var",
+              ".gitignore"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "frosh/lazy-sizes": {
+    "Store": {
+      "automatic_bugfix_version_compatibility": true,
+      "availabilities": [
+        "German",
+        "International"
+      ],
+      "categories": [
+        "ConversionOptimierung"
+      ],
+      "default_locale": "en_GB",
+      "description": {
+        "de": "file:src/Resources/store/de.md",
+        "en": "file:src/Resources/store/en.md"
+      },
+      "features": {
+        "de": [
+          "Passende Thumbnail-Größen werden dem Browser berechnet"
+        ],
+        "en": [
+          "Appropriate thumbnail sizes are calculated by the browser"
+        ]
+      },
+      "icon": "src/Resources/store/icon.png",
+      "images": [
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/1.jpg",
+          "preview": {
+            "de": true,
+            "en": true
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/2.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 1
+        }
+      ],
+      "localizations": [
+        "de_DE",
+        "en_GB"
+      ],
+      "tags": {
+        "de": [
+          "thumbnail",
+          "performance",
+          "lazy loading"
+        ],
+        "en": [
+          "thumbnail",
+          "performance",
+          "lazy loading"
+        ]
+      },
+      "type": "extension"
+    },
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": true
+        }
+      }
+    }
+  },
+  "frosh/mail-platform-archive": {
+    "Store": {
+      "automatic_bugfix_version_compatibility": true,
+      "availabilities": [
+        "German",
+        "International"
+      ],
+      "categories": [
+        "BackendBearbeitung"
+      ],
+      "default_locale": "en_GB",
+      "description": {
+        "de": "\u003cp\u003eMit diesem Plugin erhalten Sie ein einfaches durchsuchbares Archiv für E-Mails, die aus Shopware versendet werden.\u003cbr /\u003e\nDie E-Mails sind über den Menüpfad erreichbar: Einstellungen/Erweiterungen/Main Archiv.\u003c/p\u003e\n\u003cp\u003eDieses Plugin wird von \u003ca href=\"https://store.shopware.com/friends-of-shopware.html\"\u003e@FriendsOfShopware\u003c/a\u003e\nentwickelt.\u003cbr /\u003e\nMaintainer dieses Plugins ist: \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://github.com/shyim\"\u003eSoner Sayakci\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003eBei Fragen / Fehlern bitte ein \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://github.com/FriendsOfShopware/FroshPlatformMailArchive/issues/new\"\u003eGithub Issue\u003c/a\u003e erstellen\u003c/p\u003e\n",
+        "en": "\u003cp\u003eWith this plugin you get a simple searchable archive for emails that are sent from Shopware.\u003cbr /\u003e\nThe e-mails can be found via the menu path Settings/Extensions/Main Archive.\u003c/p\u003e\n\u003cp\u003eThis plugin is part of \u003ca href=\"https://store.shopware.com/en/friends-of-shopware.html\"\u003e@FriendsOfShopware\u003c/a\u003e.\u003cbr /\u003e\nMaintainer from the plugin is: \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://github.com/shyim\"\u003eSoner Sayakci\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003eFor questions or bugs please create a \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://github.com/FriendsOfShopware/FroshPlatformMailArchive/issues/new\"\u003eGithub Issue\u003c/a\u003e\u003c/p\u003e\n"
+      },
+      "features": {
+        "de": [
+          "Übersicht der versendenten E-Mails",
+          "Durchsuchbares Archiv",
+          "Erneutes versenden von E-Mails",
+          "Automatisches entfernen alter E-Mails",
+          "E-Mails, die nicht versendet werden konnten, werden markiert (ab 2.0.5)"
+        ],
+        "en": [
+          "Overview of sent emails",
+          "Searchable archive",
+          "Resend emails",
+          "Automatically remove old emails",
+          "Emails that could not be sent are marked as failed (from 2.0.5)"
+        ]
+      },
+      "icon": "src/Resources/store/icon.png",
+      "images": [
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-0.png",
+          "preview": {
+            "de": true,
+            "en": true
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-1.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        }
+      ],
+      "installation_manual": {
+        "de": "",
+        "en": ""
+      },
+      "localizations": [
+        "de_DE",
+        "en_GB"
+      ],
+      "tags": {
+        "de": [
+          "mail",
+          "archive"
+        ],
+        "en": [
+          "mail",
+          "archive"
+        ]
+      },
+      "type": "extension"
+    },
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": true,
+          "enabled": true
+        }
+      }
+    }
+  },
+  "frosh/nicer-admin": {
+    "Store": {
+      "availabilities": [
+        "International",
+        "German"
+      ],
+      "categories": [
+        "BackendBearbeitung",
+        "System"
+      ],
+      "default_locale": "en_GB",
+      "description": {
+        "de": "file:src/Resources/store/de.md",
+        "en": "file:src/Resources/store/en.md"
+      },
+      "features": {
+        "de": [
+          "Comic Sans als Schrift in der Administration",
+          "Angepasstes Logo an die Schrift"
+        ],
+        "en": [
+          "Comic Sans as font in administration",
+          "Adjusted logo to the font"
+        ]
+      },
+      "icon": "src/Resources/store/icon.png",
+      "images": [
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/0.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/1.png",
+          "preview": {
+            "de": true,
+            "en": true
+          },
+          "priority": 1
+        }
+      ],
+      "localizations": [
+        "en_GB"
+      ],
+      "tags": {
+        "de": [
+          "admin"
+        ],
+        "en": [
+          "admin"
+        ]
+      },
+      "type": "extension"
+    },
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true
+        }
+      }
+    }
+  },
+  "frosh/platform-bunnycdn-media-storage": {
+    "Store": {
+      "automatic_bugfix_version_compatibility": true,
+      "availabilities": [
+        "German",
+        "International"
+      ],
+      "categories": [
+        "ConversionOptimierung"
+      ],
+      "default_locale": "en_GB",
+      "description": {
+        "de": "file:src/Resources/store/de.md",
+        "en": "file:src/Resources/store/en.md"
+      },
+      "features": {
+        "de": [
+          "Keine Auslastung Ihres Servers durch Zugriffe auf die Medien",
+          "Geringere Ladezeiten für Besucher weltweit",
+          "Ihre Backups sind erheblich kleiner und schneller, da die Medien nicht im Shop-Verzeichnis liegen"
+        ],
+        "en": [
+          "No utilization of your server due to access to the media.",
+          "Lower load times for visitors worldwide",
+          "Your backups are considerably smaller and faster because the media is not in the shop directory"
+        ]
+      },
+      "icon": "src/Resources/store/icon.png",
+      "images": [
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/0.png",
+          "preview": {
+            "de": true,
+            "en": true
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/1.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 1
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/2.jpg",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 2
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/3.jpg",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 3
+        }
+      ],
+      "installation_manual": {
+        "de": "file:src/Resources/store/de_manual.md",
+        "en": "file:src/Resources/store/en_manual.md"
+      },
+      "localizations": [
+        "de_DE",
+        "en_GB"
+      ],
+      "tags": {
+        "de": [
+          "bunnycdn",
+          "performance",
+          "storage",
+          "space"
+        ],
+        "en": [
+          "bunnycdn",
+          "performance",
+          "storage",
+          "space"
+        ]
+      },
+      "type": "extension"
+    },
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": true
+        }
+      }
+    }
+  },
+  "frosh/platform-filter-search": {
+    "Store": null,
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": true,
+          "npm_strict": true
+        }
+      }
+    }
+  },
+  "frosh/platform-html-minify": {
+    "Store": {
+      "availabilities": [
+        "German",
+        "International"
+      ],
+      "categories": [
+        "ConversionOptimierung"
+      ],
+      "default_locale": "en_GB",
+      "faq": {
+        "de": [
+          {
+            "answer": "Prüfe das JavaScript. In der Regel sind es JavaScript-Fehler, die durch das Verkleinern erst auftreten. Fehlende Semikolons oder falsche Syntax sind häufige Fehlerquellen.",
+            "question": "Storefront funktioniert nicht nach der Aktivierung, was kann ich tun?"
+          }
+        ],
+        "en": [
+          {
+            "answer": "Check the JavaScript. In general, it is JavaScript errors that only occur after minification. Missing semicolons or incorrect syntax are common sources of errors.",
+            "question": "Storefront does not work after activation, what can I do?"
+          }
+        ]
+      },
+      "icon": "src/Resources/store/icon.png",
+      "localizations": [
+        "de_DE",
+        "en_GB"
+      ],
+      "tags": {
+        "de": [
+          "traffic",
+          "minify",
+          "performance"
+        ],
+        "en": [
+          "traffic",
+          "minify",
+          "performance"
+        ]
+      },
+      "type": "extension"
+    },
+    "Build": null
+  },
+  "frosh/platform-share-basket": {
+    "Store": null,
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": true
+        }
+      }
+    }
+  },
+  "frosh/platform-thumbnail-processor": {
+    "Store": {
+      "automatic_bugfix_version_compatibility": false,
+      "availabilities": [
+        "German",
+        "International"
+      ],
+      "categories": [
+        "ConversionOptimierung"
+      ],
+      "default_locale": "en_GB",
+      "description": {
+        "de": "file:src/Resources/store/de.md",
+        "en": "file:src/Resources/store/en.md"
+      },
+      "features": {
+        "de": [
+          "Keine Thumbnail-Dateien mehr",
+          "URL pro SalesChannel möglich"
+        ],
+        "en": [
+          "No more thumbnail files",
+          "URL per SalesChannel possible"
+        ]
+      },
+      "icon": "src/Resources/store/icon.png",
+      "images": [
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/0.jpg",
+          "preview": {
+            "de": true,
+            "en": true
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/1.jpg",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 1
+        }
+      ],
+      "localizations": [
+        "de_DE",
+        "en_GB"
+      ],
+      "tags": {
+        "de": [
+          "thumbnail",
+          "performance",
+          "storage",
+          "webp"
+        ],
+        "en": [
+          "thumbnail",
+          "performance",
+          "storage",
+          "webp"
+        ]
+      },
+      "type": "extension"
+    },
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": true
+        },
+        "pack": {
+          "before_hooks": [
+            "composer create-placeholders"
+          ]
+        }
+      }
+    }
+  },
+  "frosh/product-compare": {
+    "Store": {
+      "automatic_bugfix_version_compatibility": true,
+      "availabilities": [
+        "German",
+        "International"
+      ],
+      "categories": [
+        "otherMarketingCommercials"
+      ],
+      "default_locale": "en_GB",
+      "description": {
+        "de": "file:src/Resources/store/de.md",
+        "en": "file:src/Resources/store/en.md"
+      },
+      "highlights": {
+        "de": [
+          "Produkte vergleichen"
+        ],
+        "en": [
+          "Product Compare"
+        ]
+      },
+      "icon": "src/Resources/store/icon.png",
+      "images": [
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/0.png",
+          "preview": {
+            "de": true,
+            "en": true
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/1.png",
+          "priority": 1
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/2.png",
+          "priority": 2
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/3.png",
+          "priority": 3
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/images/4.png",
+          "priority": 4
+        }
+      ],
+      "localizations": [
+        "de_DE",
+        "en_GB"
+      ],
+      "tags": {
+        "de": [
+          "cross-selling",
+          "Produktvergleich"
+        ],
+        "en": [
+          "Cross selling",
+          "product compare"
+        ]
+      },
+      "type": "extension"
+    },
+    "Build": {
+      "zip": {
+        "assets": {
+          "npm_strict": true
+        }
+      }
+    }
+  },
+  "frosh/tools": {
+    "Store": {
+      "automatic_bugfix_version_compatibility": true,
+      "availabilities": [
+        "German",
+        "International"
+      ],
+      "categories": [
+        "Administration"
+      ],
+      "default_locale": "en_GB",
+      "description": {
+        "de": "file:src/Resources/store/de.md",
+        "en": "file:src/Resources/store/en.md"
+      },
+      "faq": {
+        "de": [],
+        "en": []
+      },
+      "features": {
+        "de": [
+          "Task-Protokollierung",
+          "System-Status",
+          "Cache-Verwaltung",
+          "Geplanter Task-Manager",
+          "Warteschlangen-Manager",
+          "Log-Viewer"
+        ],
+        "en": [
+          "System Status",
+          "Cache manager",
+          "Scheduled Task Manager",
+          "Queue Manager",
+          "Task Logging",
+          "Log viewer"
+        ]
+      },
+      "highlights": {
+        "de": [
+          "Geplanter Task-Manager",
+          "Warteschlangen-Manager",
+          "Log-Viewer"
+        ],
+        "en": [
+          "Scheduled Task Manager",
+          "Queue Manager",
+          "Log viewer"
+        ]
+      },
+      "icon": "src/Resources/store/icon.png",
+      "images": [
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-0.png",
+          "preview": {
+            "de": true,
+            "en": true
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-1.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-2.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-3.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-4.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        }
+      ],
+      "installation_manual": {
+        "de": "file:src/Resources/store/de_manual.md",
+        "en": "file:src/Resources/store/en_manual.md"
+      },
+      "localizations": [
+        "de_DE",
+        "en_GB"
+      ],
+      "tags": {
+        "de": [
+          "Tools",
+          "scheduled event",
+          "scheduled task"
+        ],
+        "en": [
+          "tools",
+          "scheduled event",
+          "scheduled task"
+        ]
+      },
+      "type": "extension",
+      "videos": {
+        "de": [],
+        "en": []
+      }
+    },
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": true,
+          "npm_strict": true
+        }
+      }
+    }
+  },
+  "heptacom/shopware-platform-admin-open-auth": {
+    "Store": null,
+    "Build": {
+      "shopwareVersionConstraint": "~6.6.0",
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": true,
+          "enabled": false
+        },
+        "composer": {
+          "enabled": false
+        },
+        "pack": {
+          "excludes": {
+            "paths": [
+              ".idea",
+              ".run",
+              "dev-ops",
+              "vendor",
+              "CLA.md",
+              "README.md",
+              "docker-compose.yml"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "imi/shopware6-password-site": {
+    "Store": {
+      "automatic_bugfix_version_compatibility": false,
+      "availabilities": [
+        "German",
+        "International"
+      ],
+      "categories": [
+        "MenueKategorien"
+      ],
+      "default_locale": "de_DE",
+      "description": {
+        "de": "\u003cp\u003eErmöglicht das Absichern von Frontendseiten (Kategorien) mit einem Passwort. Je Kategorieseite kann ein individuelles Kennwort festgelegt werden, welches vom Benutzer eingegeben wird.\u003c/p\u003e",
+        "en": "\u003cp\u003eAllows to secure frontend pages (categories) with a password. An individual password can be set for each category page, which needs to be entered by the user to access the content.\u003c/p\u003e"
+      },
+      "faq": {
+        "de": [],
+        "en": []
+      },
+      "features": {
+        "de": [],
+        "en": []
+      },
+      "highlights": {
+        "de": [],
+        "en": []
+      },
+      "icon": "src/Resources/store/icon.png",
+      "images": [
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-0.png",
+          "preview": {
+            "de": true,
+            "en": true
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": false,
+            "en": true
+          },
+          "file": "src/Resources/store/img-1.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": false,
+            "en": true
+          },
+          "file": "src/Resources/store/img-2.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": false
+          },
+          "file": "src/Resources/store/img-3.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": false
+          },
+          "file": "src/Resources/store/img-4.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 1
+        }
+      ],
+      "installation_manual": {
+        "de": "\u003cp\u003e1. Installieren Sie das Plugin\u003c/p\u003e\u003cp\u003e2. Aktivieren Sie es\u003c/p\u003e\u003cp\u003e3. Navigieren Sie zu einer Kategorie im Admin Panel\u003c/p\u003e\u003cp\u003e4. Scrollen Sie nach unten zum Passwortfeld\u003c/p\u003e\u003cp\u003e5. Wenn ein Kennwort definiert ist, muss der Benutzer das Kennwort eingeben, um auf die Kategorie (oder etwaige Unterkategorien) zuzugreifen\u003c/p\u003e",
+        "en": "\u003cp\u003e1. Install the Plugin\u003c/p\u003e\u003cp\u003e2. Activate it\u003c/p\u003e\u003cp\u003e3. Navigate to a category in the admin panel\u003c/p\u003e\u003cp\u003e4. Scroll down to the password field\u003c/p\u003e\u003cp\u003e5. If a password is defined, the user needs to enter the password to access the category (or any subcategories)\u003c/p\u003e"
+      },
+      "localizations": [
+        "de_DE",
+        "en_GB"
+      ],
+      "tags": {
+        "de": [],
+        "en": []
+      },
+      "type": "extension",
+      "videos": {
+        "de": [],
+        "en": []
+      }
+    },
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": false,
+          "enable_es_build_for_storefront": false,
+          "enabled": false,
+          "es_build_disable_sass": false,
+          "npm_strict": false
+        },
+        "composer": {
+          "enabled": false
+        },
+        "pack": {
+          "excludes": {}
+        }
+      }
+    }
+  },
+  "jeboehm/platform-access-protection": {
+    "Store": {
+      "automatic_bugfix_version_compatibility": true,
+      "availabilities": [
+        "German",
+        "International"
+      ],
+      "categories": [
+        "Administration"
+      ],
+      "default_locale": "en_GB",
+      "description": {
+        "de": "file:src/Resources/store/de.md",
+        "en": "file:src/Resources/store/en.md"
+      },
+      "faq": {
+        "de": [],
+        "en": []
+      },
+      "features": {
+        "de": [
+          "Passwortschutz für Storefront",
+          "Freigabe von IP-Adressen",
+          "Freigabe von bestimmten Benutzerrollen",
+          "keine separate Benutzerpflege notwendig"
+        ],
+        "en": [
+          "Password protection for storefront",
+          "Allow IP addresses",
+          "Allow specific user roles",
+          "no separate user management necessary"
+        ]
+      },
+      "highlights": {
+        "de": [
+          "Storefront mit Passwort schützen",
+          "IP-Adressen freigeben",
+          "keine separate Benutzerpflege notwendig"
+        ],
+        "en": [
+          "Protect storefront with password",
+          "Allow IP addresses",
+          "No separate user management necessary"
+        ]
+      },
+      "icon": "src/Resources/config/plugin.png",
+      "images": [
+        {
+          "activate": {
+            "de": false,
+            "en": true
+          },
+          "file": "src/Resources/store/screenshot_settings_en.png",
+          "preview": {
+            "de": false,
+            "en": true
+          },
+          "priority": 10
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": false
+          },
+          "file": "src/Resources/store/screenshot_settings_de.png",
+          "preview": {
+            "de": true,
+            "en": false
+          },
+          "priority": 10
+        },
+        {
+          "activate": {
+            "de": false,
+            "en": true
+          },
+          "file": "src/Resources/store/screenshot_login_en.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": false
+          },
+          "file": "src/Resources/store/screenshot_login_de.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        }
+      ],
+      "installation_manual": {
+        "de": "file:src/Resources/store/de_manual.md",
+        "en": "file:src/Resources/store/en_manual.md"
+      },
+      "localizations": [
+        "de_DE",
+        "en_GB"
+      ],
+      "tags": {
+        "de": [
+          "Tools",
+          "Testsystem",
+          "Passwortschutz"
+        ],
+        "en": [
+          "tools",
+          "password protection",
+          "test system"
+        ]
+      },
+      "type": "extension",
+      "videos": {
+        "de": [],
+        "en": []
+      }
+    },
+    "Build": {
+      "zip": {
+        "assets": {
+          "enabled": false
+        },
+        "composer": {
+          "enabled": false
+        },
+        "pack": {
+          "excludes": {
+            "paths": [
+              "var",
+              ".gitignore",
+              "src/Resources/store",
+              ".github",
+              ".shopware-extension.yml"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "kiener/mollie-payments-plugin": {
+    "Store": null,
+    "Build": {
+      "shopwareVersionConstraint": "6.4.5.0"
+    }
+  },
+  "netresearch/postdirekt-autocomplete": {
+    "Store": {
+      "automatic_bugfix_version_compatibility": true,
+      "availabilities": [
+        "German",
+        "International"
+      ],
+      "categories": [
+        "Bestellprozess"
+      ],
+      "default_locale": "de_DE",
+      "description": {
+        "de": "\u003cp\u003e\u003cstrong\u003eDATAFACTORY AUTOCOMPLETE\u003c/strong\u003e von Deutsche Post Direkt, einer auf Adress- und Datamanagement spezialisierte 100% Tochter von Deutsche Post DHL Group.\nEs bietet wirkungsvolle Unterstützung für die Adresserfassung.\u003c/p\u003e\n\u003cp\u003eDurch das Shopware 6-Plugin wird DATAFACTORY AUTOCOMPLETE einfach in Ihren Bestellprozess im Check-out integriert und die Adresseingabe mit postalischen Daten auf Basis der Original-Postleitdaten der Deutschen Post komfortabel unterstützt.\u003c/p\u003e\n\u003cp\u003eBereits bei der Eingabe der ersten alphanumerischen Zeichen in das Eingabefeld erhält Ihr Kunde bis zu 15 Vorschläge.\nInsgesamt stehen mehr als 1,2 Millionen unterschiedliche Adressvorschläge zur Verfügung, darunter alle zustellrelevanten Straßen, mehr als 16.000 Postleitzahlen mit Bestimmungsorten, 14.000 Ortsnamen und 75.000 Ortsteil-namen sowie 7.000 Postfilialen.\u003c/p\u003e\n\u003cp\u003eDie Vorschläge basieren auf den Original Postleitdaten der Deutschen Post.\nDurch die Schnittstelle und Verschlüsselung, haben Sie immer Zugang zu den aktuellsten Daten – schnell und sicher.\u003c/p\u003e\n\u003ch2\u003eKonto \u0026amp; Preisgestaltung\u003c/h2\u003e\n\u003cp\u003eEin zusätzliches Benutzerkonto ist erforderlich und es fallen zusätzliche Gebühren an.\nDas Benutzerkonto wird nicht während der Plugin-Installation erstellt.\nWenn Sie noch kein Benutzerkonto haben, besuchen Sie bitte die \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://www.postdirekt.de/autocomplete\"\u003eAnmeldeseite: www.postdirekt.de/autocomplete\u003c/a\u003e und registrieren Sie sich im Portal der Deutschen Post Direkt.\nFür weitere Informationen zu Preispaketen besuchen Sie bitte auch die \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://www.postdirekt.de/autocomplete\"\u003eAnmeldeseite: www.postdirekt.de/autocomplete\u003c/a\u003e.\nDie ersten 30 Tage sind kostenlos.\u003c/p\u003e\n\u003cp\u003eDie Deutsche Post Direkt erhält zusätzlich eine Mitteilung, sobald Sie das Plugin herunterladen.\u003c/p\u003e\n",
+        "en": "\u003cp\u003e\u003cstrong\u003eDATAFACTORY Autocomplete\u003c/strong\u003e is a service of Deutsche Post Direkt, 100 % subsidiary of the world’s leading mail and logistics company Deutsche Post DHL Group, specialized in address and data management.\nThe service offers effective assistance with incomplete address data.\u003c/p\u003e\n\u003cp\u003eThis module integrates DATAFACTORY Autocomplete services into Shopware 6 so that your customers can now supplement their postal data easily.\nAs soon as your customers enter the first alphanumerical characters in an address input field, they will receive up to 15 suggestions for valid German addresses.\nA total of around 1.2 million different address suggestions are available, including all delivery-relevant streets, more than 16,000 postal codes and destinations, 14,000 towns/cities, 75,000 district names.\nThe basis for automatic completion is the street directory based on the original postal routing data of the Deutsche Post.\nThrough interface connection and encryption, you can always access up-to-date postal data quickly and securely.\u003c/p\u003e\n\u003ch2\u003eAccount \u0026amp; Pricing\u003c/h2\u003e\n\u003cp\u003eAn additional user account is required and additional fees will apply.\nThe user account is not created during the plugin installation.\nIf you do not yet have a user account, please visit the \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://www.postdirekt.de/autocomplete\"\u003elogin page: www.postdirekt.de/autocomplete\u003c/a\u003e and register on the Deutsche Post Direkt portal.\nFor more information on price packages, please also visit \u003ca rel=\"noopener noreferrer\" target=\"_blank\" href=\"https://www.postdirekt.de/autocomplete\"\u003ewww.postdirekt.de/autocomplete\u003c/a\u003e.\nThe first 30 days are free of charge.\nDeutsche Post Direkt will also receive a message when you download the plugin.\u003c/p\u003e\n"
+      },
+      "faq": {
+        "de": [
+          {
+            "answer": "Die Dokumentation zur Konfiguration und Nutzung des Plugins finden Sie auf \u003ca href=\"https://postdirekt.support.netresearch.de/support/solutions/articles/12000053438\" target=\"_blank\"\u003edieser Seite\u003c/a\u003e.",
+            "question": "Wo finde ich die Dokumentation zum Plugin?"
+          },
+          {
+            "answer": "Das Plugin kommuniziert mit dem Service \u003ca href=\"https://www.deutschepost.de/de/d/deutsche-post-direkt/datafactory.html\" target=\"_blank\"\u003eDatafactory Autocomplete\u003c/a\u003e. Die dafür nötigen Zugangsdaten erhalten Sie von Deutsche Post Direkt. Hier können Sie \u003ca href=\"http://www.postdirekt.de/kontakt\" target=\"_blank\"\u003eKontakt aufnehmen\u003c/a\u003e.",
+            "question": "Welche Zugangsdaten benötigt das Plugin?"
+          },
+          {
+            "answer": "Eine Wissensdatenbank mit weiteren Informationen und Tipps zur Fehlerbehebung finden Sie hier: \u003ca href=\"https://postdirekt.support.netresearch.de/\" target=\"_blank\"\u003epostdirekt.support.netresearch.de\u003c/a\u003e",
+            "question": "Gibt es eine ausführliche FAQ/Wissensdatenbank?"
+          }
+        ],
+        "en": []
+      },
+      "features": {
+        "de": [
+          "Autovervollständigung bei Adresseingabe im Checkout",
+          "Autovervollständigung bei Adresseingabe im Kundenkonto",
+          "Verfügbar für die Eingabefelder: Straße, Postleitzahl und Ort",
+          "Der Cursor bleibt im Straßenfeld nach der Auswahl, so dass eine Hausnummer eingegeben werden kann.",
+          "Einfache API Konfiguration via Zugangsdaten (Benutzername \u0026 Passwort)"
+        ],
+        "en": [
+          "Autocomplete service for address input in checkout",
+          "Autocomplete service for address input in the customer account",
+          "available for Shopware 6 input fields Address, City and Zip/Postal code",
+          "Completion of postal data: delivery-relevant streets",
+          "The cursor remains in the address field to be ready for the additional input for house number after initial AUTOCOMPLETE selection",
+          "Simple API configuration via user credentials",
+          "Optional logging configuration in case of troubleshooting"
+        ]
+      },
+      "highlights": {
+        "de": [
+          "Mehr Benutzerfreundlichkeit durch schnelle und komfortable Adresseingabe",
+          "Reduzierung von Retouren durch postalisch korrekte Daten",
+          "Zugriff auf das Straßenverzeichnis auf Basis der originalen Postleitzahlen der Deutschen Post",
+          "Kaufentscheidung ohne Risiko durch 30-Tage-Gratistest"
+        ],
+        "en": [
+          "Quicker and more convenient address input",
+          "Access to the street directory based on the original postal routing data of Deutsche Post",
+          "Compatibility to DHL routing code"
+        ]
+      },
+      "icon": "src/Resources/store/icon.png",
+      "images": [
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-0.png",
+          "preview": {
+            "de": true,
+            "en": true
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-1.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-2.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-3.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-4.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        }
+      ],
+      "installation_manual": {
+        "de": "\u003cp\u003eExtrahieren Sie das NRLEJPostDirektAutocomplete Verzeichnis aus der .zip-Datei in Ihr custom/plugins Verzeichnis.\nDanach installieren und aktivieren Sie das Plugin mit dem folgenden Befehl:\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003ebin/console plugin:install --activate --clearCache NRLEJPostDirektAutocomplete\u003c/strong\u003e\u003c/p\u003e\n",
+        "en": "\u003cp\u003eExtract the NRLEJPostDirektAutocomplete directory from the .zip file into your custom/plugins directory.\nThen, install and activate the plugin:\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003ebin/console plugin:install --activate --clearCache NRLEJPostDirektAutocomplete\u003c/strong\u003e\u003c/p\u003e\n"
+      },
+      "localizations": [
+        "de_DE",
+        "en_GB"
+      ],
+      "tags": {
+        "de": [
+          "adresse"
+        ],
+        "en": [
+          "address"
+        ]
+      },
+      "type": "extension",
+      "videos": {
+        "de": [],
+        "en": []
+      }
+    },
+    "Build": {
+      "extraBundles": [],
+      "shopwareVersionConstraint": "",
+      "zip": {
+        "assets": {
+          "after_hooks": [],
+          "before_hooks": [],
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": true,
+          "enabled": true
+        },
+        "composer": {
+          "after_hooks": [],
+          "before_hooks": [],
+          "enabled": false,
+          "excluded_packages": []
+        },
+        "pack": {
+          "before_hooks": [],
+          "excludes": {
+            "paths": []
+          }
+        }
+      }
+    }
+  },
+  "netseu/checkout": {
+    "Store": null,
+    "Build": {
+      "shopwareVersionConstraint": "{{ version }}",
+      "zip": {
+        "pack": {
+          "excludes": {
+            "paths": [
+              ".gitignore",
+              ".shopware-extension.yml",
+              "rector.php",
+              "composer.lock",
+              "azure-pipelines.yaml",
+              ".prettierignore",
+              ".prettierrc"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "nosto/nosto-integration": {
+    "Store": null,
+    "Build": {
+      "shopwareVersionConstraint": "~6.6.0",
+      "zip": {
+        "pack": {
+          "excludes": {
+            "paths": [
+              ".shopware-extension.yml",
+              ".gitignore",
+              ".github",
+              ".git",
+              "bin",
+              "docs",
+              "node_modules",
+              "release",
+              "tests",
+              "vendor",
+              "ecs.php",
+              "phpunit.xml.dist",
+              "package.json",
+              "package-lock.json",
+              "composer.lock",
+              ".eslintignore",
+              ".eslintrc-administration.js",
+              ".eslintrc-storefront.js",
+              "*.zip",
+              "*.DS_Store"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "payone-gmbh/shopware-6": {
+    "Store": null,
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": false,
+          "enabled": true
+        },
+        "composer": {
+          "enabled": false
+        },
+        "pack": {
+          "excludes": {
+            "paths": [
+              "__COMPOSER_HOME__",
+              "bin",
+              "tests",
+              "var",
+              ".eslintignore",
+              ".gitignore",
+              ".shopware-extension.yml",
+              ".phpunit.result.cache",
+              "ecs.php",
+              "phpstan.neon",
+              "phpstan-ignore.neon",
+              "phpunit.xml.dist",
+              "rector.php"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "ratepay/shopware6-module": {
+    "Store": null,
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": false,
+          "enable_es_build_for_storefront": false,
+          "enabled": true
+        },
+        "composer": {
+          "enabled": false
+        },
+        "pack": {
+          "excludes": {
+            "paths": [
+              "__COMPOSER_HOME__",
+              ".github",
+              ".gitignore",
+              ".shopware-extension.yml",
+              "ecs.php",
+              "phpstan.neon",
+              "phpunit.xml",
+              "rector.php",
+              "tests"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "sas/esd": {
+    "Store": null,
+    "Build": {
+      "zip": {
+        "assets": {
+          "enabled": true
+        },
+        "composer": {
+          "enabled": true
+        },
+        "pack": {
+          "excludes": {
+            "paths": [
+              ".idea",
+              ".gitignore",
+              "SasEsd.zip"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "shopgate/cart-integration-shopware6": {
+    "Store": {
+      "automatic_bugfix_version_compatibility": true,
+      "availabilities": [
+        "German",
+        "International"
+      ],
+      "categories": [
+        "loyalityAndRewards"
+      ],
+      "default_locale": "de_DE",
+      "description": {
+        "de": "\u003cb\u003eShopping App für Shopware 6\u0026nbsp;\u003c/b\u003e\u003cbr\u003e\u003ca href=\"https://www.shopgate.com/demo-buchen\" target=\"_blank\" rel=\"noreferrer noopener\"\u003eJetzt Demo anfordern\u003c/a\u003e\u003cb\u003e\u003ca href=\"http://www.shopgate.com/de/shopware/?ref=shopware_store\"\u003e\u003c/a\u003e\u003c/b\u003e\u003cbr\u003e\u003cbr\u003e\u003cp\u003eEine eigene Shopping App hilft Händler*innen, bei Kunden*innen dauerhaft präsent zu bleiben. Zudem bieten Sie wiederkehrenden Kunden*innen mit einer mobilen App die schnellste, einfachste und bequemste Möglichkeit online zu bestellen.\u003c/p\u003e\u003cp\u003eDarüber hinaus bietet Ihnen eine eigene App die Möglichkeit über Push-Nachrichten, Loyality-Systeme und digitale Kundenkarten ganz neue Marketing-Kanäle zu öffnen und so langfristige Kundenbindung zu erzielen.\u003c/p\u003e\u003cp\u003eKurz: Apps gehören heute zu den stärksten digitalen Instrumenten, um Kunden*innen an Ihr Unternehmen zu binden und Angebote bei bestehenden Kunden*innen zu vermarkten.\u003c/p\u003e\u003cp\u003eShopgate hat eine Plattform entwickelt, um hoch performante, individualisierte Shopping Apps zu bauen, zu veröffentlichen und für Händler*innen auf dem neusten Stand zu halten – für einen Bruchteil des Preises, den Sie für eine Eigenentwicklung investieren müssten.\u003c/p\u003e\u003cbr\u003eKontakt:\u0026nbsp;\u003cp\u003eTelefon: +49 6033 74700\u0026nbsp;\u003c/p\u003e\u003cp\u003eE-Mail: sales-de@shopgate.com \u0026nbsp;\u003c/p\u003e\u003cp\u003e\u003ca href=\"https://account.shopware.com/www.shopgate.com%C2%A0\"\u003ewww.shopgate.com\u0026nbsp;\u003c/a\u003e\u003c/p\u003e",
+        "en": "\u003cb\u003eShopping App for Shopware\u0026nbsp;\u003c/b\u003e\u003cbr\u003e\u003cbr\u003e\u003cp\u003eHaving your own shopping app helps merchants to maintain a lasting presence among customers. In addition, with a mobile app you offer returning customers the fastest, easiest and most convenient way to order online.\u003c/p\u003e\u003cp\u003e\u003cbr\u003e\u003c/p\u003e\u003cp\u003eIn addition, your own app offers you the opportunity to open up completely new marketing channels via push messages, loyalty systems and digital customer cards and thus achieve long-term customer loyalty.\u003c/p\u003e\u003cp\u003e\u003cbr\u003e\u003c/p\u003e\u003cp\u003eIn short, apps are one of today's most powerful digital tools for building customer loyalty and marketing offers to existing customers.\u003c/p\u003e\u003cp\u003e\u003cbr\u003e\u003c/p\u003e\u003cp\u003eShopgate has developed a platform to build and publish high-performance, individualized shopping apps and keep them up-to-date for merchants - for a fraction of the price you would have to invest for an in-house development.\u003c/p\u003e\u003cp\u003e\u003cbr\u003e\u003c/p\u003e\u003cp\u003eContact:\u0026nbsp;\u003c/p\u003e\u003cp\u003ePhone: +49 6033 74700\u0026nbsp;\u003c/p\u003e\u003cp\u003eE-mail: sales@shopgate.com\u0026nbsp;\u0026nbsp;\u003c/p\u003e"
+      },
+      "faq": {
+        "de": [],
+        "en": []
+      },
+      "features": {
+        "de": [
+          "Native App für iPhone und Android Smartphones",
+          "Unlimitierte Push-Nachrichten inklusive",
+          "Individuell anpassbare App-Technologie",
+          "Schnittstellen zu über 50 Technologie-Partnern",
+          "Drag \u0026 Drop CMS-System",
+          "Backend \u0026 Analytics"
+        ],
+        "en": [
+          "Native app for iPhone and Android smartphones",
+          "Unlimited push messages included",
+          "Customizable app technology",
+          "Interfaces to over 50 technology partners",
+          "Drag \u0026 Drop CMS system",
+          "Backend \u0026 Analytics"
+        ]
+      },
+      "highlights": {
+        "de": [
+          "Schnellere Time-to-Market durch Software-as-a-Service",
+          "Individuell anpassbar durch Ihre Entwickler",
+          "Support und App-Management inklusive",
+          "Wartung und Hosting inklusive"
+        ],
+        "en": [
+          "Faster time-to-market through Software-as-a-Service",
+          "Customizable by your developers",
+          "Support and app management included",
+          "Maintenance and hosting included"
+        ]
+      },
+      "icon": "src/Resources/store/icon.png",
+      "images": [
+        {
+          "activate": {
+            "de": true,
+            "en": false
+          },
+          "file": "src/Resources/store/img-0.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 20
+        },
+        {
+          "activate": {
+            "de": false,
+            "en": true
+          },
+          "file": "src/Resources/store/img-1.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 21
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-2.png",
+          "preview": {
+            "de": true,
+            "en": true
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": false
+          },
+          "file": "src/Resources/store/img-3.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": false,
+            "en": true
+          },
+          "file": "src/Resources/store/img-4.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-5.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": false
+          },
+          "file": "src/Resources/store/img-6.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        },
+        {
+          "activate": {
+            "de": true,
+            "en": true
+          },
+          "file": "src/Resources/store/img-7.png",
+          "preview": {
+            "de": false,
+            "en": false
+          },
+          "priority": 0
+        }
+      ],
+      "installation_manual": {
+        "de": "\u003cp\u003eMit dem Einrichten der Shopgate-App, können Sie von einer Reihe von Features profitieren, die unmittelbar in Ihren mobilen Shop und die Apps übernommen werden:\u0026nbsp;\u003ca href=\"https://support.shopgate.com/hc/de/articles/202798446-Anbindung-an-Shopware%C2%A0\"\u003ehttps://support.shopgate.com/hc/de/articles/360021478860-Shopware-6\u003c/a\u003e\u003c/p\u003e",
+        "en": "\u003cul\u003e\u003cli\u003ePlease check here how to easily connect with Shopgate: \u003ca href=\"https://support.shopgate.com/hc/de/articles/360021478860-Shopware-6\"\u003ehttps://support.shopgate.com/hc/de/articles/360021478860-Shopware-6\u003c/a\u003e\u003c/li\u003e\u003c/ul\u003e"
+      },
+      "localizations": [
+        "de_DE",
+        "en_GB"
+      ],
+      "tags": {
+        "de": [
+          "App",
+          "Mobile App",
+          "Native App",
+          "Mobile Commerce"
+        ],
+        "en": [
+          "App",
+          "Mobile App",
+          "Native App",
+          "shopping app"
+        ]
+      },
+      "type": "extension",
+      "videos": {
+        "de": [],
+        "en": []
+      }
+    },
+    "Build": {
+      "extraBundles": [],
+      "zip": {
+        "assets": {
+          "after_hooks": [],
+          "before_hooks": [],
+          "enable_es_build_for_admin": false,
+          "enable_es_build_for_storefront": false,
+          "enabled": false
+        },
+        "composer": {
+          "after_hooks": [],
+          "before_hooks": [],
+          "enabled": true,
+          "excluded_packages": [
+            "shopware/core",
+            "symfony/expression-language"
+          ]
+        },
+        "pack": {
+          "before_hooks": [],
+          "excludes": {
+            "paths": [
+              "phpunit.xml.dist",
+              "composer.lock"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "swag/language-pack": {
+    "Store": null,
+    "Build": null
+  },
+  "swag/swag-extension-store": {
+    "Store": null,
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": false,
+          "enable_es_build_for_storefront": true,
+          "npm_strict": true
+        }
+      }
+    }
+  },
+  "tilta/shopware6-payment-module": {
+    "Store": null,
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": false,
+          "enabled": true
+        },
+        "composer": {
+          "enabled": true
+        },
+        "pack": {
+          "excludes": {
+            "paths": [
+              "__COMPOSER_HOME__",
+              "bin",
+              "tests",
+              "var",
+              ".gitignore",
+              ".shopware-extension.yml",
+              "ecs.php",
+              "phpstan.neon",
+              "phpunit.xml",
+              "rector.php",
+              "composer.lock"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "tinect/matomo": {
+    "Store": null,
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": false,
+          "enable_es_build_for_storefront": false,
+          "enabled": true
+        }
+      }
+    }
+  },
+  "tinect/platform-html-minify": {
+    "Store": {
+      "availabilities": [
+        "German",
+        "International"
+      ],
+      "categories": [
+        "ConversionOptimierung"
+      ],
+      "default_locale": "en_GB",
+      "faq": {
+        "de": [
+          {
+            "answer": "Prüfe das JavaScript. In der Regel sind es JavaScript-Fehler, die durch das Verkleinern erst auftreten. Fehlende Semikolons oder falsche Syntax sind häufige Fehlerquellen.",
+            "question": "Storefront funktioniert nicht nach der Aktivierung, was kann ich tun?"
+          }
+        ],
+        "en": [
+          {
+            "answer": "Check the JavaScript. In general, it is JavaScript errors that only occur after minification. Missing semicolons or incorrect syntax are common sources of errors.",
+            "question": "Storefront does not work after activation, what can I do?"
+          }
+        ]
+      },
+      "icon": "src/Resources/store/icon.png",
+      "localizations": [
+        "de_DE",
+        "en_GB"
+      ],
+      "tags": {
+        "de": [
+          "traffic",
+          "minify",
+          "performance"
+        ],
+        "en": [
+          "traffic",
+          "minify",
+          "performance"
+        ]
+      },
+      "type": "extension"
+    },
+    "Build": null
+  },
+  "tinect/redirects": {
+    "Store": null,
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": true,
+          "enabled": true
+        },
+        "composer": {
+          "enabled": false
+        },
+        "pack": {
+          "excludes": {
+            "paths": [
+              "var",
+              ".gitignore"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "unzerdev/shopware6": {
+    "Store": null,
+    "Build": {
+      "zip": {
+        "assets": {
+          "enabled": false
+        },
+        "pack": {
+          "excludes": {
+            "paths": [
+              ".eslintignore",
+              ".eslintrc.js",
+              ".gitlab",
+              ".shopware-extension.yml",
+              "bin",
+              "cypress.json.dist",
+              "package.json",
+              "phpmd.xml",
+              "phpstan.neon",
+              "phpstan_shopware-6-5.neon",
+              "shopware_store_phpstan.neon"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "werkstattl/openblogware": {
+    "Store": null,
+    "Build": {
+      "zip": {
+        "assets": {
+          "enable_es_build_for_admin": true,
+          "enable_es_build_for_storefront": true,
+          "enabled": true
+        },
+        "composer": {
+          "enabled": true
+        },
+        "pack": {
+          "excludes": {
+            "paths": [
+              ".idea",
+              "var",
+              ".gitignore"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
