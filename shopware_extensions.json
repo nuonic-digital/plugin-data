@@ -31,6 +31,10 @@
       }
     }
   },
+  "blurcreative/elysium-slider": {
+    "Store": null,
+    "Build": null
+  },
   "findologic/plugin-shopware-6": {
     "Store": null,
     "Build": {
