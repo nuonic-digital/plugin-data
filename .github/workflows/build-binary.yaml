@@ -1,4 +1,4 @@
-name: Build & release smtp-server
+name: Build & release plugin-data-extractor
 
 on:
   push:
