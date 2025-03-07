@@ -1957,7 +1957,7 @@
     "ref": "https://packagist.org/packages/tinect/matomo.json"
   },
   "tinect/platform-html-minify": {
-    "repositoryUrl": "https://github.com/tinect/TinectPlatformHtmlMinify.git",
+    "repositoryUrl": "https://github.com/FriendsOfShopware/FroshPlatformHtmlMinify.git",
     "shopware-extension": {
       "store": {
         "availabilities": [
