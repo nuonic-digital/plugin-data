@@ -130,6 +130,14 @@
     },
     "ref": "https://packagist.org/packages/billie/shopware6-payment-module.json"
   },
+  "blurcreative/elysium-slider": {
+    "repositoryUrl": "https://github.com/fyrst-digital/elysium.git",
+    "shopware-extension": {
+      "store": null,
+      "build": null
+    },
+    "ref": "https://packagist.org/packages/blurcreative/elysium-slider.json"
+  },
   "findologic/plugin-shopware-6": {
     "repositoryUrl": "https://github.com/findologic/plugin-shopware-6.git",
     "shopware-extension": {
