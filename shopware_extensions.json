@@ -1,4 +1,42 @@
 {
+  "areanet/autocustomergroup": {
+    "repositoryUrl": "https://github.com/AREA-NET-GmbH-Shopware-Agentur/shopware6-plugin-auto-customer-group.git",
+    "shopware-extension": {
+      "store": null,
+      "build": {
+        "zip": {
+          "pack": {
+            "excludes": {
+              "paths": [
+                ".idea",
+                "images"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ref": "https://packagist.org/packages/areanet/autocustomergroup.json"
+  },
+  "areanet/betterdeliverytime": {
+    "repositoryUrl": "https://github.com/AREA-NET-GmbH-Shopware-Agentur/shopware6-plugin-better-delivery-time.git",
+    "shopware-extension": {
+      "store": null,
+      "build": {
+        "zip": {
+          "pack": {
+            "excludes": {
+              "paths": [
+                ".idea",
+                "docs"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ref": "https://packagist.org/packages/areanet/betterdeliverytime.json"
+  },
   "billie/shopware6-payment-module": {
     "repositoryUrl": "https://github.com/ozean12/shopware6-payment-module.git",
     "shopware-extension": {
@@ -580,7 +618,7 @@
     "ref": "https://packagist.org/packages/frosh/platform-filter-search.json"
   },
   "frosh/platform-html-minify": {
-    "repositoryUrl": "https://github.com/FriendsOfShopware/FroshPlatformHtmlMinify.git",
+    "repositoryUrl": "https://github.com/FriendsOfShopware/FroshPlatformHtmlMinifier.git",
     "shopware-extension": {
       "store": {
         "availabilities": [
