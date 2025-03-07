@@ -29,6 +29,7 @@ jobs:
       - name: ⚡️ Run Shopware Plugin Index Generator
         run: |
           ./plugin-data-extractor
+          mv shopware_extensions.json shopware_extensions_v1.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

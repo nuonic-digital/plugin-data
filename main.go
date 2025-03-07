@@ -1,10 +1,8 @@
 package main
 
 import (
-	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"io"
 	"log"
 	"net/http"
 	"os"
@@ -138,12 +136,4 @@ func checkShopwareExtensionFile(repositoryURL string) bool {
 	}
 
 	return false
-}
-
-func decodeBase64(content string) (string, error) {
-	decodedContent, err := io.ReadAll(base64.NewDecoder(base64.StdEncoding, strings.NewReader(content)))
-	if err != nil {
-		return "", err
-	}
-	return string(decodedContent), nil
 }
