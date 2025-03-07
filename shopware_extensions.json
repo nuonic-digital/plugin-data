@@ -1,4 +1,23 @@
 {
+  "areanet/adminfilter": {
+    "repositoryUrl": "https://github.com/AREA-NET-GmbH-Shopware-Agentur/shopware6-plugin-productnumber-ean-admin-filter.git",
+    "shopware-extension": {
+      "store": null,
+      "build": {
+        "zip": {
+          "pack": {
+            "excludes": {
+              "paths": [
+                ".idea",
+                "images"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ref": "https://packagist.org/packages/areanet/adminfilter.json"
+  },
   "areanet/autocustomergroup": {
     "repositoryUrl": "https://github.com/AREA-NET-GmbH-Shopware-Agentur/shopware6-plugin-auto-customer-group.git",
     "shopware-extension": {
@@ -36,6 +55,44 @@
       }
     },
     "ref": "https://packagist.org/packages/areanet/betterdeliverytime.json"
+  },
+  "areanet/canonicalvariants": {
+    "repositoryUrl": "https://github.com/AREA-NET-GmbH-Shopware-Agentur/shopware6-plugin-canonical-variants.git",
+    "shopware-extension": {
+      "store": null,
+      "build": {
+        "zip": {
+          "pack": {
+            "excludes": {
+              "paths": [
+                ".idea",
+                "docs"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ref": "https://packagist.org/packages/areanet/canonicalvariants.json"
+  },
+  "areanet/surcharge-promotions": {
+    "repositoryUrl": "https://github.com/AREA-NET-GmbH-Shopware-Agentur/shopware6-plugin-surcharge-promotions.git",
+    "shopware-extension": {
+      "store": null,
+      "build": {
+        "zip": {
+          "pack": {
+            "excludes": {
+              "paths": [
+                ".idea",
+                "images"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ref": "https://packagist.org/packages/areanet/surcharge-promotions.json"
   },
   "billie/shopware6-payment-module": {
     "repositoryUrl": "https://github.com/ozean12/shopware6-payment-module.git",
@@ -1995,7 +2052,7 @@
     "ref": "https://packagist.org/packages/tinect/matomo.json"
   },
   "tinect/platform-html-minify": {
-    "repositoryUrl": "https://github.com/tinect/TinectPlatformHtmlMinify.git",
+    "repositoryUrl": "https://github.com/FriendsOfShopware/FroshPlatformHtmlMinify.git",
     "shopware-extension": {
       "store": {
         "availabilities": [
