@@ -4,7 +4,6 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"gopkg.in/yaml.v3"
 	"io"
 	"log"
 	"net/http"
@@ -32,9 +31,8 @@ type ShopwareExtension struct {
 }
 
 type ShopwareExtensionMetadata struct {
-	RepositoryUrl string             `json:"repositoryUrl"`
-	Extension     *ShopwareExtension `json:"shopware-extension"`
-	Ref           string             `json:"ref"`
+	RepositoryUrl string `json:"repositoryUrl"`
+	Ref           string `json:"ref"`
 }
 
 func main() {
@@ -73,10 +71,9 @@ func main() {
 			log.Printf("Package: %s, Repository: %s\n", packageName, version.Source.URL)
 			if strings.Contains(version.Source.URL, "github.com") {
 				extension := checkShopwareExtensionFile(version.Source.URL)
-				if extension != nil {
+				if extension {
 					packageData[packageName] = &ShopwareExtensionMetadata{
 						RepositoryUrl: version.Source.URL,
-						Extension:     extension,
 						Ref:           detailsURL,
 					}
 				}
@@ -101,12 +98,12 @@ func main() {
 	log.Println("Shopware extensions data written to shopware_extensions.json")
 }
 
-func checkShopwareExtensionFile(repositoryURL string) *ShopwareExtension {
+func checkShopwareExtensionFile(repositoryURL string) bool {
 	// Extract the owner and repo from the GitHub URL
 	parts := strings.Split(repositoryURL, "/")
 	if len(parts) < 5 {
 		log.Printf("Invalid GitHub URL: %s", repositoryURL)
-		return nil
+		return false
 	}
 
 	owner := parts[3]
@@ -127,44 +124,20 @@ func checkShopwareExtensionFile(repositoryURL string) *ShopwareExtension {
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Printf("Failed to fetch .shopware-extension.yml file for %s/%s: %v", owner, repo, err)
-		return nil
+		return false
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode == http.StatusOK {
 		log.Printf(".shopware-extension.yml found in %s/%s\n", owner, repo)
-
-		var contentResponse struct {
-			Content string `json:"content"`
-		}
-		if err := json.NewDecoder(resp.Body).Decode(&contentResponse); err != nil {
-			log.Printf("Failed to decode .shopware-extension.yml content response: %v", err)
-			return nil
-		}
-
-		yamlContent, err := decodeBase64(contentResponse.Content)
-		if err != nil {
-			log.Printf("Failed to decode base64 content: %v", err)
-			return nil
-		}
-
-		log.Printf(yamlContent)
-
-		var extension ShopwareExtension
-		if err := yaml.Unmarshal([]byte(yamlContent), &extension); err != nil {
-			log.Printf("Failed to parse YAML: %v", err)
-			return nil
-		}
-
-		log.Printf(".shopware-extension.yml found and parsed in %s/%s\n", owner, repo)
-		return &extension
+		return true
 	} else if resp.StatusCode == http.StatusNotFound {
 		log.Printf(".shopware-extension.yml not found in %s/%s\n", owner, repo)
 	} else {
 		log.Printf("Failed to fetch .shopware-extension.yml for %s/%s: %v", owner, repo, err)
 	}
 
-	return nil
+	return false
 }
 
 func decodeBase64(content string) (string, error) {
