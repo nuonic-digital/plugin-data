@@ -81,7 +81,7 @@
       "latestCommitTime": 1709473117
     },
     "frosh/platform-html-minify": {
-      "repositoryUrl": "https://github.com/FriendsOfShopware/FroshPlatformHtmlMinify.git",
+      "repositoryUrl": "https://github.com/FriendsOfShopware/FroshPlatformHtmlMinifier.git",
       "ref": "https://packagist.org/packages/frosh/platform-html-minify.json",
       "latestCommitTime": 1741096857
     },
@@ -206,5 +206,5 @@
       "latestCommitTime": 1740863916
     }
   },
-  "generatedAt": 1741462378
+  "generatedAt": 1741464239
 }
