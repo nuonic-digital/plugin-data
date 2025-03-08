@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 )
 
 type PackageListResponse struct {
@@ -23,14 +24,73 @@ type PackageDetailsResponse struct {
 	} `json:"package"`
 }
 
-type ShopwareExtension struct {
-	Store map[string]interface{} `yaml:"store" json:"store"` // Use interface{} to maintain flexibility
-	Build map[string]interface{} `yaml:"build" json:"build"`
+type ShopwareExtensionMetadata struct {
+	RepositoryUrl    string `json:"repositoryUrl"`
+	Ref              string `json:"ref"`
+	LatestCommitTime int    `json:"latestCommitTime"`
 }
 
-type ShopwareExtensionMetadata struct {
-	RepositoryUrl string `json:"repositoryUrl"`
-	Ref           string `json:"ref"`
+type ShopwareExtensionIndex struct {
+	Extensions  map[string]*ShopwareExtensionMetadata `json:"extensions"`
+	GeneratedAt int                                   `json:"generatedAt"`
+}
+
+type GitHubClient struct {
+	HTTPClient *http.Client
+	Token      string
+}
+
+func (c *GitHubClient) FetchFile(owner, repo, filePath string) (*http.Response, error) {
+	githubAPIURL := fmt.Sprintf("https://api.github.com/repos/%s/%s/contents/%s", owner, repo, filePath)
+	req, _ := http.NewRequest("GET", githubAPIURL, nil)
+
+	if c.Token != "" {
+		req.Header.Set("Authorization", "token "+c.Token)
+	}
+
+	return c.HTTPClient.Do(req)
+}
+
+func (c *GitHubClient) FetchLatestCommitTime(owner, repo string) (int, error) {
+	githubAPIURL := fmt.Sprintf("https://api.github.com/repos/%s/%s/commits?per_page=1", owner, repo)
+	req, _ := http.NewRequest("GET", githubAPIURL, nil)
+
+	if c.Token != "" {
+		req.Header.Set("Authorization", "token "+c.Token)
+	}
+
+	resp, err := c.HTTPClient.Do(req)
+	if err != nil {
+		return 0, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return 0, fmt.Errorf("failed to fetch commits: status code %d", resp.StatusCode)
+	}
+
+	var commits []struct {
+		Commit struct {
+			Author struct {
+				Date string `json:"date"`
+			} `json:"author"`
+		} `json:"commit"`
+	}
+
+	if err := json.NewDecoder(resp.Body).Decode(&commits); err != nil {
+		return 0, err
+	}
+
+	if len(commits) == 0 {
+		return 0, fmt.Errorf("no commits found")
+	}
+
+	commitTime, err := time.Parse(time.RFC3339, commits[0].Commit.Author.Date)
+	if err != nil {
+		return 0, err
+	}
+
+	return int(commitTime.Unix()), nil
 }
 
 func main() {
@@ -49,6 +109,11 @@ func main() {
 	}
 
 	packageData := make(map[string]*ShopwareExtensionMetadata)
+	// Initialize the GitHub client
+	githubClient := &GitHubClient{
+		HTTPClient: &http.Client{},
+		Token:      os.Getenv("GITHUB_TOKEN"),
+	}
 	// Iterate through each package to get the repository URL
 	for _, packageName := range packageList.PackageNames {
 		detailsURL := fmt.Sprintf("https://packagist.org/packages/%s.json", packageName)
@@ -68,11 +133,12 @@ func main() {
 		for _, version := range packageDetails.Package.Versions {
 			log.Printf("Package: %s, Repository: %s\n", packageName, version.Source.URL)
 			if strings.Contains(version.Source.URL, "github.com") {
-				extension := checkShopwareExtensionFile(version.Source.URL)
+				extension, commitTime := checkShopwareExtensionFile(version.Source.URL, githubClient)
 				if extension {
 					packageData[packageName] = &ShopwareExtensionMetadata{
-						RepositoryUrl: version.Source.URL,
-						Ref:           detailsURL,
+						RepositoryUrl:    version.Source.URL,
+						Ref:              detailsURL,
+						LatestCommitTime: commitTime,
 					}
 				}
 			}
@@ -89,51 +155,42 @@ func main() {
 
 	jsonEncoder := json.NewEncoder(file)
 	jsonEncoder.SetIndent("", "  ")
-	if err := jsonEncoder.Encode(packageData); err != nil {
+	if err := jsonEncoder.Encode(ShopwareExtensionIndex{
+		Extensions:  packageData,
+		GeneratedAt: int(time.Now().Unix()),
+	}); err != nil {
 		log.Fatalf("Failed to write JSON to file: %v", err)
 	}
 
 	log.Println("Shopware extensions data written to shopware_extensions.json")
 }
 
-func checkShopwareExtensionFile(repositoryURL string) bool {
-	// Extract the owner and repo from the GitHub URL
+func checkShopwareExtensionFile(repositoryURL string, client *GitHubClient) (bool, int) {
 	parts := strings.Split(repositoryURL, "/")
 	if len(parts) < 5 {
 		log.Printf("Invalid GitHub URL: %s", repositoryURL)
-		return false
+		return false, 0
 	}
 
 	owner := parts[3]
-	repo := parts[4]
-	// Ensure to remove '.git' if it's included in the URL
-	repo = strings.TrimSuffix(repo, ".git")
+	repo := strings.TrimSuffix(parts[4], ".git")
 
-	// Use the GitHub API to fetch the file details
-	githubAPIURL := fmt.Sprintf("https://api.github.com/repos/%s/%s/contents/.shopware-extension.yml", owner, repo)
-	req, _ := http.NewRequest("GET", githubAPIURL, nil)
-
-	token, ok := os.LookupEnv("GITHUB_TOKEN")
-	if ok {
-		req.Header.Set("Authorization", "token "+token)
-	}
-
-	client := &http.Client{}
-	resp, err := client.Do(req)
+	resp, err := client.FetchFile(owner, repo, ".shopware-extension.yml")
 	if err != nil {
 		log.Printf("Failed to fetch .shopware-extension.yml file for %s/%s: %v", owner, repo, err)
-		return false
+		return false, 0
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode == http.StatusOK {
-		log.Printf(".shopware-extension.yml found in %s/%s\n", owner, repo)
-		return true
-	} else if resp.StatusCode == http.StatusNotFound {
-		log.Printf(".shopware-extension.yml not found in %s/%s\n", owner, repo)
-	} else {
+	exists := resp.StatusCode == http.StatusOK
+	if !exists && resp.StatusCode != http.StatusNotFound {
 		log.Printf("Failed to fetch .shopware-extension.yml for %s/%s: %v", owner, repo, err)
 	}
 
-	return false
+	commitTime, err := client.FetchLatestCommitTime(owner, repo)
+	if err != nil {
+		log.Printf("Failed to fetch latest commit time for %s/%s: %v", owner, repo, err)
+	}
+
+	return exists, commitTime
 }
