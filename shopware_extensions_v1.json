@@ -181,7 +181,7 @@
       "latestCommitTime": 1730059219
     },
     "tinect/platform-html-minify": {
-      "repositoryUrl": "https://github.com/FriendsOfShopware/FroshPlatformHtmlMinify.git",
+      "repositoryUrl": "https://github.com/tinect/TinectPlatformHtmlMinify.git",
       "ref": "https://packagist.org/packages/tinect/platform-html-minify.json",
       "latestCommitTime": 1741096857
     },
@@ -201,5 +201,5 @@
       "latestCommitTime": 1740863916
     }
   },
-  "generatedAt": 1741458818
+  "generatedAt": 1741460636
 }
