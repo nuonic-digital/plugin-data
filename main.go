@@ -2,11 +2,13 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -21,10 +23,33 @@ type PackageVersion struct {
 	Time string `json:"time"`
 }
 
+type PackageDetails struct {
+	Data PackageDetailsResponse
+	URL  string
+}
 type PackageDetailsResponse struct {
 	Package struct {
 		Versions map[string]PackageVersion `json:"versions"`
 	} `json:"package"`
+}
+
+func (d *PackageDetailsResponse) GetLatestVersion() *PackageVersion {
+	var latestVersion *PackageVersion
+	var latestTime time.Time
+
+	for _, versionData := range d.Package.Versions {
+		parsedTime, err := time.Parse(time.RFC3339, versionData.Time)
+		if err != nil {
+			log.Printf("Failed to parse time for package version: %s, error: %v", versionData.Time, err)
+			continue
+		}
+
+		if latestVersion == nil || parsedTime.After(latestTime) {
+			latestTime = parsedTime
+			latestVersion = &versionData
+		}
+	}
+	return latestVersion
 }
 
 type ShopwareExtensionMetadata struct {
@@ -96,6 +121,57 @@ func (c *GitHubClient) FetchLatestCommitTime(owner, repo string) (int, error) {
 	return int(commitTime.Unix()), nil
 }
 
+func (c *GitHubClient) GetMetadata(repositoryURL string) (bool, int) {
+	parts := strings.Split(repositoryURL, "/")
+	if len(parts) < 5 {
+		log.Printf("Invalid GitHub URL: %s", repositoryURL)
+		return false, 0
+	}
+
+	owner := parts[3]
+	repo := strings.TrimSuffix(parts[4], ".git")
+
+	resp, err := c.FetchFile(owner, repo, ".shopware-extension.yml")
+	if err != nil {
+		log.Printf("Failed to fetch .shopware-extension.yml file for %s/%s: %v", owner, repo, err)
+		return false, 0
+	}
+	defer resp.Body.Close()
+
+	exists := resp.StatusCode == http.StatusOK
+	if !exists && resp.StatusCode != http.StatusNotFound {
+		log.Printf("Failed to fetch .shopware-extension.yml for %s/%s: %v", owner, repo, err)
+	}
+
+	commitTime, err := c.FetchLatestCommitTime(owner, repo)
+	if err != nil {
+		log.Printf("Failed to fetch latest commit time for %s/%s: %v", owner, repo, err)
+	}
+
+	return exists, commitTime
+}
+
+func FetchPackageDetails(packageName string) (*PackageDetails, error) {
+	detailsURL := fmt.Sprintf("https://packagist.org/packages/%s.json", packageName)
+	detailsResp, err := http.Get(detailsURL)
+	if err != nil {
+		return nil, errors.New(fmt.Sprintf("Failed to fetch details for package %s: %v", packageName, err))
+	}
+	defer detailsResp.Body.Close()
+
+	var packageDetails PackageDetailsResponse
+	if err := json.NewDecoder(detailsResp.Body).Decode(&packageDetails); err != nil {
+		return nil, errors.New(fmt.Sprintf("Failed to decode details for package %s: %v", packageName, err))
+	}
+
+	return &PackageDetails{
+		Data: packageDetails,
+		URL:  detailsURL,
+	}, nil
+}
+
+var githubClient *GitHubClient
+
 func main() {
 	packageListURL := "https://packagist.org/packages/list.json?type=shopware-platform-plugin"
 
@@ -111,56 +187,55 @@ func main() {
 		log.Fatalf("Failed to decode package list: %v", err)
 	}
 
-	packageData := make(map[string]*ShopwareExtensionMetadata)
 	// Initialize the GitHub client
-	githubClient := &GitHubClient{
+	githubClient = &GitHubClient{
 		HTTPClient: &http.Client{},
 		Token:      os.Getenv("GITHUB_TOKEN"),
 	}
-	// Iterate through each package to get the repository URL
+
+	var wg sync.WaitGroup
+
+	workerCount := 10
+	jobCount := len(packageList.PackageNames)
+
+	jobs := make(chan Job, jobCount)
+	results := make(chan Result, jobCount)
+
+	wg.Add(workerCount)
+	for w := 1; w <= workerCount; w++ {
+		go worker(jobs, results, &wg)
+	}
+
+	var resultsWg sync.WaitGroup
+	resultsWg.Add(1)
+	go collectResults(results, &resultsWg)
+
 	for _, packageName := range packageList.PackageNames {
-		detailsURL := fmt.Sprintf("https://packagist.org/packages/%s.json", packageName)
-		detailsResp, err := http.Get(detailsURL)
-		if err != nil {
-			log.Printf("Failed to fetch details for package %s: %v", packageName, err)
-			continue
+		jobs <- Job{
+			PackageName: packageName,
 		}
-		defer detailsResp.Body.Close()
+	}
+	close(jobs)
+	wg.Wait()
+	close(results)
+	resultsWg.Wait()
+}
 
-		var packageDetails PackageDetailsResponse
-		if err := json.NewDecoder(detailsResp.Body).Decode(&packageDetails); err != nil {
-			log.Printf("Failed to decode details for package %s: %v", packageName, err)
-			continue
-		}
+type Job struct {
+	PackageName string
+}
 
-		var latestVersion *PackageVersion
-		var latestTime time.Time
+type Result struct {
+	Data *PackageData
+}
 
-		for _, versionData := range packageDetails.Package.Versions {
-			parsedTime, err := time.Parse(time.RFC3339, versionData.Time)
-			if err != nil {
-				log.Printf("Failed to parse time for package version: %s, error: %v", versionData.Time, err)
-				continue
-			}
+func collectResults(results chan Result, wg *sync.WaitGroup) {
+	defer wg.Done()
 
-			if latestVersion == nil || parsedTime.After(latestTime) {
-				latestTime = parsedTime
-				latestVersion = &versionData
-			}
-		}
-
-		if latestVersion != nil {
-			log.Printf("Package: %s, Repository: %s\n", packageName, latestVersion.Source.URL)
-			if strings.Contains(latestVersion.Source.URL, "github.com") {
-				extension, commitTime := checkShopwareExtensionFile(latestVersion.Source.URL, githubClient)
-				if extension {
-					packageData[packageName] = &ShopwareExtensionMetadata{
-						RepositoryUrl:    latestVersion.Source.URL,
-						Ref:              detailsURL,
-						LatestCommitTime: commitTime,
-					}
-				}
-			}
+	packageData := make(map[string]*ShopwareExtensionMetadata)
+	for result := range results {
+		if result.Data != nil {
+			packageData[result.Data.PackageName] = result.Data.Metadata
 		}
 	}
 
@@ -183,32 +258,45 @@ func main() {
 	log.Println("Shopware extensions data written to shopware_extensions.json")
 }
 
-func checkShopwareExtensionFile(repositoryURL string, client *GitHubClient) (bool, int) {
-	parts := strings.Split(repositoryURL, "/")
-	if len(parts) < 5 {
-		log.Printf("Invalid GitHub URL: %s", repositoryURL)
-		return false, 0
+func worker(jobs <-chan Job, results chan<- Result, wg *sync.WaitGroup) {
+	defer wg.Done()
+	for job := range jobs {
+		results <- Result{
+			Data: ProcessPackage(job.PackageName),
+		}
 	}
+}
 
-	owner := parts[3]
-	repo := strings.TrimSuffix(parts[4], ".git")
+type PackageData struct {
+	PackageName string
+	Metadata    *ShopwareExtensionMetadata
+}
 
-	resp, err := client.FetchFile(owner, repo, ".shopware-extension.yml")
+func ProcessPackage(packageName string) *PackageData {
+	packageDetails, err := FetchPackageDetails(packageName)
 	if err != nil {
-		log.Printf("Failed to fetch .shopware-extension.yml file for %s/%s: %v", owner, repo, err)
-		return false, 0
-	}
-	defer resp.Body.Close()
-
-	exists := resp.StatusCode == http.StatusOK
-	if !exists && resp.StatusCode != http.StatusNotFound {
-		log.Printf("Failed to fetch .shopware-extension.yml for %s/%s: %v", owner, repo, err)
+		log.Printf("%v", err)
+		return nil
 	}
 
-	commitTime, err := client.FetchLatestCommitTime(owner, repo)
-	if err != nil {
-		log.Printf("Failed to fetch latest commit time for %s/%s: %v", owner, repo, err)
+	latestVersion := packageDetails.Data.GetLatestVersion()
+
+	if latestVersion != nil {
+		log.Printf("Package: %s, Repository: %s\n", packageName, latestVersion.Source.URL)
+		if strings.Contains(latestVersion.Source.URL, "github.com") {
+			extension, commitTime := githubClient.GetMetadata(latestVersion.Source.URL)
+			if extension {
+				return &PackageData{
+					PackageName: packageName,
+					Metadata: &ShopwareExtensionMetadata{
+						RepositoryUrl:    latestVersion.Source.URL,
+						Ref:              packageDetails.URL,
+						LatestCommitTime: commitTime,
+					},
+				}
+			}
+		}
 	}
 
-	return exists, commitTime
+	return nil
 }
