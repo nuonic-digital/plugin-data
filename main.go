@@ -14,13 +14,16 @@ type PackageListResponse struct {
 	PackageNames []string `json:"packageNames"`
 }
 
+type PackageVersion struct {
+	Source struct {
+		URL string `json:"url"`
+	} `json:"source"`
+	Time string `json:"time"`
+}
+
 type PackageDetailsResponse struct {
 	Package struct {
-		Versions map[string]struct {
-			Source struct {
-				URL string `json:"url"`
-			} `json:"source"`
-		} `json:"versions"`
+		Versions map[string]PackageVersion `json:"versions"`
 	} `json:"package"`
 }
 
@@ -130,19 +133,34 @@ func main() {
 			continue
 		}
 
-		for _, version := range packageDetails.Package.Versions {
-			log.Printf("Package: %s, Repository: %s\n", packageName, version.Source.URL)
-			if strings.Contains(version.Source.URL, "github.com") {
-				extension, commitTime := checkShopwareExtensionFile(version.Source.URL, githubClient)
+		var latestVersion *PackageVersion
+		var latestTime time.Time
+
+		for _, versionData := range packageDetails.Package.Versions {
+			parsedTime, err := time.Parse(time.RFC3339, versionData.Time)
+			if err != nil {
+				log.Printf("Failed to parse time for package version: %s, error: %v", versionData.Time, err)
+				continue
+			}
+
+			if latestVersion == nil || parsedTime.After(latestTime) {
+				latestTime = parsedTime
+				latestVersion = &versionData
+			}
+		}
+
+		if latestVersion != nil {
+			log.Printf("Package: %s, Repository: %s\n", packageName, latestVersion.Source.URL)
+			if strings.Contains(latestVersion.Source.URL, "github.com") {
+				extension, commitTime := checkShopwareExtensionFile(latestVersion.Source.URL, githubClient)
 				if extension {
 					packageData[packageName] = &ShopwareExtensionMetadata{
-						RepositoryUrl:    version.Source.URL,
+						RepositoryUrl:    latestVersion.Source.URL,
 						Ref:              detailsURL,
 						LatestCommitTime: commitTime,
 					}
 				}
 			}
-			break // Assuming you want one repository URL per package
 		}
 	}
 

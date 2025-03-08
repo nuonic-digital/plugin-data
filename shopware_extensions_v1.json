@@ -81,7 +81,7 @@
       "latestCommitTime": 1709473117
     },
     "frosh/platform-html-minify": {
-      "repositoryUrl": "https://github.com/FriendsOfShopware/FroshPlatformHtmlMinifier.git",
+      "repositoryUrl": "https://github.com/FriendsOfShopware/FroshPlatformHtmlMinify.git",
       "ref": "https://packagist.org/packages/frosh/platform-html-minify.json",
       "latestCommitTime": 1741096857
     },
@@ -143,7 +143,7 @@
     "nuonic/plugin-installer": {
       "repositoryUrl": "https://github.com/nuonic-digital/plugin-installer.git",
       "ref": "https://packagist.org/packages/nuonic/plugin-installer.json",
-      "latestCommitTime": 1741395202
+      "latestCommitTime": 1741468457
     },
     "payone-gmbh/shopware-6": {
       "repositoryUrl": "https://github.com/PAYONE-GmbH/shopware-6.git",
@@ -206,5 +206,5 @@
       "latestCommitTime": 1740863916
     }
   },
-  "generatedAt": 1741467861
+  "generatedAt": 1741469213
 }
