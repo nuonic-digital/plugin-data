@@ -30,11 +30,6 @@
       "ref": "https://packagist.org/packages/billie/shopware6-payment-module.json",
       "latestCommitTime": 1733149252
     },
-    "blurcreative/elysium-slider": {
-      "repositoryUrl": "https://github.com/fyrst-digital/elysium.git",
-      "ref": "https://packagist.org/packages/blurcreative/elysium-slider.json",
-      "latestCommitTime": 1740650861
-    },
     "findologic/plugin-shopware-6": {
       "repositoryUrl": "https://github.com/findologic/plugin-shopware-6.git",
       "ref": "https://packagist.org/packages/findologic/plugin-shopware-6.json",
@@ -186,7 +181,7 @@
       "latestCommitTime": 1730059219
     },
     "tinect/platform-html-minify": {
-      "repositoryUrl": "https://github.com/FriendsOfShopware/FroshPlatformHtmlMinify.git",
+      "repositoryUrl": "https://github.com/tinect/TinectPlatformHtmlMinify.git",
       "ref": "https://packagist.org/packages/tinect/platform-html-minify.json",
       "latestCommitTime": 1741096857
     },
@@ -206,5 +201,5 @@
       "latestCommitTime": 1740863916
     }
   },
-  "generatedAt": 1741397358
+  "generatedAt": 1741398791
 }
