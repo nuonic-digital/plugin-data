@@ -63,7 +63,7 @@
     "frosh/mail-platform-archive": {
       "repositoryUrl": "https://github.com/FriendsOfShopware/FroshPlatformMailArchive.git",
       "ref": "https://packagist.org/packages/frosh/mail-platform-archive.json",
-      "latestCommitTime": 1739887492
+      "latestCommitTime": 1741599628
     },
     "frosh/nicer-admin": {
       "repositoryUrl": "https://github.com/FriendsOfShopware/FroshNicerAdmin.git",
@@ -206,5 +206,5 @@
       "latestCommitTime": 1740863916
     }
   },
-  "generatedAt": 1741599142
+  "generatedAt": 1741601011
 }
