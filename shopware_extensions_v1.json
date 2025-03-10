@@ -198,7 +198,7 @@
     "unzerdev/shopware6": {
       "repositoryUrl": "https://github.com/unzerdev/shopware6.git",
       "ref": "https://packagist.org/packages/unzerdev/shopware6.json",
-      "latestCommitTime": 1741203586
+      "latestCommitTime": 1741605468
     },
     "werkstattl/openblogware": {
       "repositoryUrl": "https://github.com/Werkstattl/OpenBlogware.git",
@@ -206,5 +206,5 @@
       "latestCommitTime": 1740863916
     }
   },
-  "generatedAt": 1741604584
+  "generatedAt": 1741606336
 }
