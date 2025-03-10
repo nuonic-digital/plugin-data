@@ -5,10 +5,21 @@ on:
     - cron: '*/30 * * * *' # Weekly schedule
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "generate-index"
+  cancel-in-progress: false
+
 jobs:
   update-index:
     runs-on: ubuntu-latest
-
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: ⬇️ Checkout Repository
         uses: actions/checkout@v4
@@ -29,18 +40,16 @@ jobs:
       - name: ⚡️ Run Shopware Plugin Index Generator
         run: |
           ./plugin-data-extractor
-          mv shopware_extensions.json shopware_extensions_v1.json
+          mkdir dist
+          mv shopware_extensions.json dist/shopware_extensions_v1.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: ⬆️ Commit and push changes
-        continue-on-error: true
-        run: |
-          rm plugin-data-extractor
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add shopware_extensions*.json
-          git commit -m 'Update Shopware plugin index'
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
