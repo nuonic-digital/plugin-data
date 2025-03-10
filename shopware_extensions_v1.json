@@ -173,7 +173,7 @@
     "swag/swag-extension-store": {
       "repositoryUrl": "https://github.com/shopware/SwagExtensionStore.git",
       "ref": "https://packagist.org/packages/swag/swag-extension-store.json",
-      "latestCommitTime": 1741342127
+      "latestCommitTime": 1741592944
     },
     "tilta/shopware6-payment-module": {
       "repositoryUrl": "https://github.com/tilta-io/tilta-shopware-6-plugin.git",
@@ -206,5 +206,5 @@
       "latestCommitTime": 1740863916
     }
   },
-  "generatedAt": 1741591949
+  "generatedAt": 1741593843
 }
