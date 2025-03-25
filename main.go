@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -240,6 +241,64 @@ func collectResults(results chan Result, wg *sync.WaitGroup) {
 	}
 
 	// Write the map to a JSON file
+	writeShopwareExtensionJson(packageData)
+	writeShopwareExtensionListingHtml(packageData)
+}
+
+func writeShopwareExtensionListingHtml(packageData map[string]*ShopwareExtensionMetadata) {
+	file, err := os.Create("index.html")
+	if err != nil {
+		log.Fatalf("Unable to create index.html file: %v", err)
+	}
+	defer file.Close()
+
+	tmpl, err := template.New("index_html").Parse(`
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Shopware Extensions</title>
+	</head>
+	<body>
+		<h1>Shopware Extensions</h1>
+		<p>Generated at: {{ .GeneratedAt }}</p>
+		<table>
+			<thead>
+				<tr>
+					<th>Package</th>
+					<th>Repository URL</th>
+					<th>Latest Commit Time</th>
+				</tr>
+ 			</thead>
+			<tbody>
+				{{ range $packageName, $metadata := .Extensions }}
+					<tr>
+						<td>{{ $packageName }}</td>
+						<td><a href="{{ $metadata.RepositoryUrl }}">{{ $metadata.RepositoryUrl }}</a></td>
+						<td>{{ $metadata.LatestCommitTime }}</td>
+					</tr>
+				{{ end }}
+			</tbody>
+		</table>
+	</body>
+`)
+
+	if tmpl == nil {
+		log.Fatalf("Failed to parse HTML template: %v", err)
+	}
+
+	if err = tmpl.Execute(file, ShopwareExtensionIndex{
+		Extensions:  packageData,
+		GeneratedAt: int(time.Now().Unix()),
+	}); err != nil {
+		log.Fatalf("Failed to write HTML to file: %v", err)
+	}
+
+	log.Println("Shopware extensions data written to index.html")
+}
+
+func writeShopwareExtensionJson(packageData map[string]*ShopwareExtensionMetadata) {
 	file, err := os.Create("shopware_extensions.json")
 	if err != nil {
 		log.Fatalf("Unable to create JSON file: %v", err)

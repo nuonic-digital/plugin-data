@@ -41,6 +41,7 @@ jobs:
         run: |
           ./plugin-data-extractor
           mkdir dist
+          mv index.html dist/index.html
           mv shopware_extensions.json dist/shopware_extensions_v1.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
