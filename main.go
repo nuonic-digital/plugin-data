@@ -54,9 +54,10 @@ func (d *PackageDetailsResponse) GetLatestVersion() *PackageVersion {
 }
 
 type ShopwareExtensionMetadata struct {
-	RepositoryUrl    string `json:"repositoryUrl"`
-	Ref              string `json:"ref"`
-	LatestCommitTime int    `json:"latestCommitTime"`
+	RepositoryUrl            string `json:"repositoryUrl"`
+	Ref                      string `json:"ref"`
+	LatestCommitTime         int    `json:"latestCommitTime"`
+	AdditionalMetadataExists bool   `json:"additionalMetadataExists"`
 }
 
 type ShopwareExtensionIndex struct {
@@ -122,11 +123,11 @@ func (c *GitHubClient) FetchLatestCommitTime(owner, repo string) (int, error) {
 	return int(commitTime.Unix()), nil
 }
 
-func (c *GitHubClient) GetMetadata(repositoryURL string) (bool, int) {
+func (c *GitHubClient) GetLatestCommitTime(repositoryURL string) (bool, *int) {
 	parts := strings.Split(repositoryURL, "/")
 	if len(parts) < 5 {
 		log.Printf("Invalid GitHub URL: %s", repositoryURL)
-		return false, 0
+		return false, nil
 	}
 
 	owner := parts[3]
@@ -135,7 +136,7 @@ func (c *GitHubClient) GetMetadata(repositoryURL string) (bool, int) {
 	resp, err := c.FetchFile(owner, repo, ".shopware-extension.yml")
 	if err != nil {
 		log.Printf("Failed to fetch .shopware-extension.yml file for %s/%s: %v", owner, repo, err)
-		return false, 0
+		return false, nil
 	}
 	defer resp.Body.Close()
 
@@ -147,9 +148,10 @@ func (c *GitHubClient) GetMetadata(repositoryURL string) (bool, int) {
 	commitTime, err := c.FetchLatestCommitTime(owner, repo)
 	if err != nil {
 		log.Printf("Failed to fetch latest commit time for %s/%s: %v", owner, repo, err)
+		return false, nil
 	}
 
-	return exists, commitTime
+	return exists, &commitTime
 }
 
 func FetchPackageDetails(packageName string) (*PackageDetails, error) {
@@ -343,14 +345,15 @@ func ProcessPackage(packageName string) *PackageData {
 	if latestVersion != nil {
 		log.Printf("Package: %s, Repository: %s\n", packageName, latestVersion.Source.URL)
 		if strings.Contains(latestVersion.Source.URL, "github.com") {
-			extension, commitTime := githubClient.GetMetadata(latestVersion.Source.URL)
-			if extension {
+			exists, commitTime := githubClient.GetLatestCommitTime(latestVersion.Source.URL)
+			if commitTime != nil {
 				return &PackageData{
 					PackageName: packageName,
 					Metadata: &ShopwareExtensionMetadata{
-						RepositoryUrl:    latestVersion.Source.URL,
-						Ref:              packageDetails.URL,
-						LatestCommitTime: commitTime,
+						RepositoryUrl:            latestVersion.Source.URL,
+						Ref:                      packageDetails.URL,
+						LatestCommitTime:         *commitTime,
+						AdditionalMetadataExists: exists,
 					},
 				}
 			}
