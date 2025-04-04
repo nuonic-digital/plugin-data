@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"slices"
 	"strings"
 	"sync"
 	"time"
@@ -21,7 +22,8 @@ type PackageVersion struct {
 	Source struct {
 		URL string `json:"url"`
 	} `json:"source"`
-	Time string `json:"time"`
+	License *[]string `json:"license"`
+	Time    string    `json:"time"`
 }
 
 type PackageDetails struct {
@@ -341,24 +343,32 @@ func ProcessPackage(packageName string) *PackageData {
 	}
 
 	latestVersion := packageDetails.Data.GetLatestVersion()
-
-	if latestVersion != nil {
-		log.Printf("Package: %s, Repository: %s\n", packageName, latestVersion.Source.URL)
-		if strings.Contains(latestVersion.Source.URL, "github.com") {
-			exists, commitTime := githubClient.GetLatestCommitTime(latestVersion.Source.URL)
-			if commitTime != nil {
-				return &PackageData{
-					PackageName: packageName,
-					Metadata: &ShopwareExtensionMetadata{
-						RepositoryUrl:            latestVersion.Source.URL,
-						Ref:                      packageDetails.URL,
-						LatestCommitTime:         *commitTime,
-						AdditionalMetadataExists: exists,
-					},
-				}
-			}
-		}
+	if latestVersion == nil {
+		return nil
 	}
 
-	return nil
+	log.Printf("Package: %s, Repository: %s\n", packageName, latestVersion.Source.URL)
+	if !strings.Contains(latestVersion.Source.URL, "github.com") {
+		return nil
+	}
+
+	if latestVersion.License == nil || slices.Contains(*latestVersion.License, "proprietary") {
+		log.Printf("Skipping proprietary package: %s", packageName)
+		return nil
+	}
+
+	exists, commitTime := githubClient.GetLatestCommitTime(latestVersion.Source.URL)
+	if commitTime == nil {
+		return nil
+	}
+
+	return &PackageData{
+		PackageName: packageName,
+		Metadata: &ShopwareExtensionMetadata{
+			RepositoryUrl:            latestVersion.Source.URL,
+			Ref:                      packageDetails.URL,
+			LatestCommitTime:         *commitTime,
+			AdditionalMetadataExists: exists,
+		},
+	}
 }
