@@ -175,6 +175,15 @@ func FetchPackageDetails(packageName string) (*PackageDetails, error) {
 	}, nil
 }
 
+func filter[T any](ss []T, test func(T) bool) (ret []T) {
+	for _, s := range ss {
+		if test(s) {
+			ret = append(ret, s)
+		}
+	}
+	return
+}
+
 var githubClient *GitHubClient
 
 func main() {
@@ -191,6 +200,11 @@ func main() {
 	if err := json.NewDecoder(resp.Body).Decode(&packageList); err != nil {
 		log.Fatalf("Failed to decode package list: %v", err)
 	}
+
+	var packageNameBlacklist = []string{"tinect/platform-html-minify"}
+	packageList.PackageNames = filter(packageList.PackageNames, func(s string) bool {
+		return !slices.Contains(packageNameBlacklist, s)
+	})
 
 	// Initialize the GitHub client
 	githubClient = &GitHubClient{
