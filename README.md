@@ -11,5 +11,5 @@ As this is WIP, keep in mind the URL can change any time.
 Plugins available in the public https://packagist.org registry fulfilling the following criteria are listed:
 
 - `"type": "shopware-platform-plugin",` in `composer.json`
-- `license` in `composer.json` is not empty or `proprietary`
+- `license` in `composer.json` is not empty and is not `proprietary`
 - ~~contain a `.shopware-extension.yml` in the repo root~~
